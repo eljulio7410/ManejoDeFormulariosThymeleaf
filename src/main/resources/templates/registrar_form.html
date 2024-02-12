@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Registro</title>
+    <style type="text/css">
+        button {
+            padding: 10px;
+        }
+        span {
+            color: red;
+            font-style: italic;
+        }
+        form {
+            display: table;
+        }
+        form div {
+            display: table-row;
+        }
+        label, input, span, select {
+            display: table-cell;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select, textarea {
+            width: 200px;
+            margin: 5px;
+        }
+
+        form div div {
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+
+    <div align="center">
+        <h1>Formulario de registro</h1>
+        <form th:action="@{/registrar}" method="post" th:object="${user}">
+            <div>
+                <label>Nombre completo : </label>
+                <input type="text" th:field="*{nombre}"><br/>
+            </div>
+
+            <div>
+                <label>Email : </label>
+                <input type="email" th:field="*{email}"><br/>
+            </div>
+
+            <div>
+                <label>password : </label>
+                <input type="password" th:field="*{password}"><br/>
+            </div>
+
+            <div>
+                <label>Fecha nacimiento : </label>
+                <input type="date" th:field="*{fechaNacimiento}"><br/>
+            </div>
+
+            <div>
+                <label>Genero : </label>
+                <input type="radio" th:field="*{genero}" value="Masculino">Masculino
+                <input type="radio" th:field="*{genero}" value="Femenino">Femenino
+            </div>
+
+            <div>
+                <label>Profesiones : </label>
+                <select th:field="*{profesion}">
+                    <option th:each="p : ${profesiones}" th:value="${p}" th:text="${p}"/>
+                </select>
+            </div>
+
+            <div>
+                <label>Matrimonio : </label>
+                <input type="checkbox" th:field="*{matrimonio}"/>
+            </div>
+
+            <div>
+                <label>Ingreso anual : </label>
+                <input type="text" th:field="*{ingreso}"/>
+            </div>
+
+            <div>
+                <label>Nota : </label>
+                <textarea rows="5" cols="225" th:field="*{nota}"></textarea>
+            </div>
+            <div>
+                <div></div>
+                <div><button type="submit">Registrar</button></div>
+                <div></div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
